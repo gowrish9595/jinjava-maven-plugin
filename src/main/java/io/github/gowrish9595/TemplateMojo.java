@@ -1,4 +1,4 @@
-package com.github.gowrish9595;
+package io.github.gowrish9595;
 
 import com.google.common.io.Resources;
 import com.hubspot.jinjava.Jinjava;
