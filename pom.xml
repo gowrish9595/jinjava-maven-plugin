@@ -4,7 +4,7 @@
 
     <groupId>io.github.gowrish9595</groupId>
     <artifactId>jinjava-maven-plugin</artifactId>
-    <version>0.0.1.RELEASE-SNAPSHOT</version>
+    <version>0.0.1.RELEASE</version>
     <packaging>maven-plugin</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
