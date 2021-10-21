@@ -68,11 +68,14 @@ public class TemplateMojo extends AbstractMojo {
     public InputStream readVariableFile() throws MojoExecutionException {
         log.info("Reading variable File");
         File variableFilePath = new File(contextFilePath);
-        try {
-            return new FileInputStream(variableFilePath);
+        try (FileInputStream fileInputStream = new FileInputStream(variableFilePath)){
+            return fileInputStream;
         } catch (FileNotFoundException e) {
             log.error("File not found in {}", variableFilePath, e);
-            throw new MojoExecutionException("File Not Found");
+            throw new MojoExecutionException("File Not Found", e);
+        } catch (IOException e) {
+            log.error("File not found in {}", variableFilePath, e);
+            throw new MojoExecutionException("Error in reading context file", e);
         }
     }
 
