@@ -26,22 +26,22 @@ import java.util.Map;
 public class TemplateMojo extends AbstractMojo {
 
     @Parameter
-    String j2ResourcesDirectory;
+    public String j2ResourcesDirectory;
 
     @Parameter
-    String outputDirectory;
+    public String outputDirectory;
 
     @Parameter
-    String contextFilePath;
+    public String contextFilePath;
 
     @Parameter(defaultValue = "false")
-    boolean isLStripBlocks;
+    public boolean isLStripBlocks;
 
     @Parameter(defaultValue = "true")
-    boolean isTrimBlocks;
+    public boolean isTrimBlocks;
 
     @Parameter(defaultValue = "true")
-    boolean isFailOnUnKnownVariables;
+    public boolean isFailOnUnKnownVariables;
 
     JinjavaConfig jinjavaConfig = JinjavaConfig.newBuilder()
             .withFailOnUnknownTokens(isFailOnUnKnownVariables)
@@ -64,7 +64,7 @@ public class TemplateMojo extends AbstractMojo {
         }
     }
 
-    public Map<String, Object> readVariableFile() throws MojoExecutionException {
+    private Map<String, Object> readVariableFile() throws MojoExecutionException {
         log.info("Reading variable File");
         File variableFilePath = new File(contextFilePath);
         try (FileInputStream fileInputStream = new FileInputStream(variableFilePath)) {
@@ -79,7 +79,7 @@ public class TemplateMojo extends AbstractMojo {
         }
     }
 
-    public List<File> getResourceFilesInThePath(String path, String fileExtension) {
+    private List<File> getResourceFilesInThePath(String path, String fileExtension) {
         log.info("Retrieving j2 template file in path: {}", path);
         File file = new File(path);
         Collection<File> files = FileUtils.listFiles(file, new String[]{fileExtension}, false);
