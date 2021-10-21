@@ -9,8 +9,31 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
-    <url>http://maven.apache.org</url>
-    <name>jinjava-maven-plugin</name>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Maven plugin that can be used to template and generate text files (eg json, yml, txt) during build</description>
+    <url>https://github.com/gowrish9595/jinjava-maven-plugin</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Mariathasan Gowrishankar</name>
+            <email>gowrishankarjhcbb@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/gowrish9595/jinjava-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://github.com/gowrish9595/jinjava-maven-plugin.git</developerConnection>
+        <url>https://github.com/gowrish9595/jinjava-maven-plugin</url>
+    </scm>
+
+
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
