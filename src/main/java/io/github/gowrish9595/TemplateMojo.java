@@ -43,17 +43,14 @@ public class TemplateMojo extends AbstractMojo {
     @Parameter(defaultValue = "true")
     boolean isFailOnUnKnownVariables;
 
+    JinjavaConfig jinjavaConfig = JinjavaConfig.newBuilder()
+            .withFailOnUnknownTokens(isFailOnUnKnownVariables)
+            .withTrimBlocks(isTrimBlocks)
+            .withLstripBlocks(isLStripBlocks)
+            .build();
 
-    private final Jinjava jinjava;
+    private final Jinjava jinjava = new Jinjava(jinjavaConfig);
 
-    public TemplateMojo() {
-        JinjavaConfig jinjavaConfig = JinjavaConfig.newBuilder()
-                .withFailOnUnknownTokens(isFailOnUnKnownVariables)
-                .withTrimBlocks(isTrimBlocks)
-                .withLstripBlocks(isLStripBlocks)
-                .build();
-        jinjava = new Jinjava(jinjavaConfig);
-    }
 
     @Override
     public void execute() throws MojoExecutionException {
