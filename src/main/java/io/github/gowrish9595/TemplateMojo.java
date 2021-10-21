@@ -54,8 +54,7 @@ public class TemplateMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException {
-        InputStream variableFileStream = readVariableFile();
-        Map<String, Object> variables = parseVariables(variableFileStream);
+        Map<String, Object> variables = readVariableFile();
         List<File> filesInThePath = getResourceFilesInThePath(j2ResourcesDirectory, "j2");
         for (File file : filesInThePath) {
             String templateFileName = file.getName();
@@ -65,11 +64,12 @@ public class TemplateMojo extends AbstractMojo {
         }
     }
 
-    public InputStream readVariableFile() throws MojoExecutionException {
+    public Map<String, Object> readVariableFile() throws MojoExecutionException {
         log.info("Reading variable File");
         File variableFilePath = new File(contextFilePath);
-        try (FileInputStream fileInputStream = new FileInputStream(variableFilePath)){
-            return fileInputStream;
+        try (FileInputStream fileInputStream = new FileInputStream(variableFilePath)) {
+            Yaml yaml = new Yaml();
+            return yaml.load(fileInputStream);
         } catch (FileNotFoundException e) {
             log.error("File not found in {}", variableFilePath, e);
             throw new MojoExecutionException("File Not Found", e);
@@ -77,12 +77,6 @@ public class TemplateMojo extends AbstractMojo {
             log.error("File not found in {}", variableFilePath, e);
             throw new MojoExecutionException("Error in reading context file", e);
         }
-    }
-
-    public Map<String, Object> parseVariables(InputStream inputStream) {
-        log.info("Parsing variables from file");
-        Yaml yaml = new Yaml();
-        return yaml.load(inputStream);
     }
 
     public List<File> getResourceFilesInThePath(String path, String fileExtension) {
