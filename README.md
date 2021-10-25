@@ -43,8 +43,6 @@ To execute the ansible __ping__ module with the host as __localhost__
 ## Goals
 
 * [generate-files-for-templates](#generate-files-for-templates)
-* [playbook](#playbook-1)
-* [pull](#pull-1)
 
 ### generate-files-for-templates 
 
